@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  IMAGE_NAME:
+    image: REGISTRY/IMAGE_NAME:BUILD_NUMBER
+    hostname: IMAGE_NAME
+    ports:
+      - PORT_NUMBER:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ENV_NAME
+      - TZ=Asia/Tehran
+    deploy:
+      restart_policy:
+        condition: any
+      mode: replicated
+      replicas: REPLICA_NUMBER
+      endpoint_mode: vip
+    networks:
+      - mongo
+networks:
+  mongo:
+    external: true
